@@ -318,15 +318,12 @@ app.get('/api/seed', async (req, res) => {
 const PORT = process.env.PORT || 5000;
 const MONGO_URI = process.env.MONGO_URI;
 
-
-// Connect to MongoDB Atlas
 if (MONGO_URI) {
   mongoose.connect(MONGO_URI)
     .then(() => console.log("Connected to MongoDB Atlas"))
     .catch(err => console.error("Database error:", err));
 }
 
-// Only listen locally; Vercel handles the serverless execution
 if (process.env.NODE_ENV !== 'production') {
   app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 }

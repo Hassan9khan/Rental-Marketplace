@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5000/api';
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
+fetch(`${API_URL}/api/seed`);
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('listings'); // 'listings' | 'bookings' | 'analytics'
