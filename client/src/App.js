@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const API_URL = process.env.NODE_ENV === 'production'
-  ? 'https://rental-marketplace-api.vercel.app/api' // Your Vercel backend link
+  ? 'https://rental-marketplace-six.vercel.app/api'
   : 'http://localhost:5000/api';
 
 export default function App() {
