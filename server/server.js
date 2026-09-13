@@ -49,6 +49,11 @@ const Listing = mongoose.model('Listing', listingSchema);
 const Booking = mongoose.model('Booking', bookingSchema);
 const Review = mongoose.model('Review', reviewSchema);
 
+
+app.get('/', (req, res) => {
+  res.json({ message: "RentSphere API is live and running!" });
+});
+
 // 2. Listing Routes
 app.get('/api/listings', async (req, res) => {
   try {
@@ -294,22 +299,139 @@ app.get('/api/seed', async (req, res) => {
   try {
     await Listing.deleteMany({});
     await Review.deleteMany({});
+
     const createdListings = await Listing.insertMany([
-      { title: "Luxury 2-Bed City Apartment", category: "Real Estate", pricePerDay: 45, location: "Downtown", imageUrl: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600", description: "Modern furnished flat close to metro transit.", avgRating: 5.0, reviewCount: 1 },
-      { title: "Beachside Studio Villa", category: "Real Estate", pricePerDay: 85, location: "Coastal Bay", imageUrl: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=600", description: "Private beach access and ocean view patio.", avgRating: 4.8, reviewCount: 1 },
-      { title: "Tesla Model 3 Long Range", category: "Vehicles", pricePerDay: 70, location: "Airport Hub", imageUrl: "https://images.unsplash.com/photo-1536700503339-1e4b06520771?w=600", description: "Full self-driving enabled, pristine interior.", avgRating: 4.9, reviewCount: 1 },
-      { title: "Sony A7 IV + 24-70mm GM Lens", category: "Equipment", pricePerDay: 30, location: "Media City", imageUrl: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600", description: "Pro 4K video setup with two SD cards.", avgRating: 5.0, reviewCount: 1 }
+      { 
+        title: "Luxury 2-Bed City Apartment", 
+        category: "Real Estate", 
+        pricePerDay: 45, 
+        location: "Downtown", 
+        imageUrl: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600", 
+        description: "Modern furnished flat close to metro transit with high-speed fiber internet.", 
+        avgRating: 5.0, 
+        reviewCount: 1 
+      },
+      { 
+        title: "Beachside Studio Villa", 
+        category: "Real Estate", 
+        pricePerDay: 85, 
+        location: "Coastal Bay", 
+        imageUrl: "https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=600", 
+        description: "Private beach access, ocean-view patio, and dedicated workspace setup.", 
+        avgRating: 4.8, 
+        reviewCount: 2 
+      },
+      { 
+        title: "Tesla Model 3 Long Range", 
+        category: "Vehicles", 
+        pricePerDay: 70, 
+        location: "Airport Hub", 
+        imageUrl: "https://images.unsplash.com/photo-1536700503339-1e4b06520771?w=600", 
+        description: "Full self-driving enabled, pristine interior, and free supercharging included.", 
+        avgRating: 4.9, 
+        reviewCount: 4 
+      },
+      { 
+        title: "Yamaha MT-07 Naked Bike", 
+        category: "Vehicles", 
+        pricePerDay: 35, 
+        location: "Midtown", 
+        imageUrl: "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?w=600", 
+        description: "Agile 689cc twin cylinder street motorcycle with helmet and phone mount.", 
+        avgRating: 4.7, 
+        reviewCount: 1 
+      },
+      { 
+        title: "Sony A7 IV + 24-70mm GM Lens", 
+        category: "Equipment", 
+        pricePerDay: 30, 
+        location: "Media City", 
+        imageUrl: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=600", 
+        description: "Pro 4K60p video and 33MP hybrid photo setup with two 128GB fast SD cards.", 
+        avgRating: 5.0, 
+        reviewCount: 3 
+      },
+      { 
+        title: "DJI Mavic 3 Pro Cine Drone", 
+        category: "Equipment", 
+        pricePerDay: 40, 
+        location: "Tech District", 
+        imageUrl: "https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=600", 
+        description: "Hasselblad triple-camera drone with 3 flight batteries and an ND filter kit.", 
+        avgRating: 4.9, 
+        reviewCount: 2 
+      },
+      { 
+        title: "PlayStation 5 Pro + 2 DualSense", 
+        category: "Electronics", 
+        pricePerDay: 15, 
+        location: "Gulshan Hub", 
+        imageUrl: "https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=600", 
+        description: "Loaded with competitive sports and action titles, plus high-speed controller charging dock.", 
+        avgRating: 4.8, 
+        reviewCount: 5 
+      },
+      { 
+        title: "Apple MacBook Pro M3 Max (64GB)", 
+        category: "Electronics", 
+        pricePerDay: 50, 
+        location: "Clifton", 
+        imageUrl: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600", 
+        description: "High-performance editing rig for heavy 4K/8K ProRes exports and machine learning models.", 
+        avgRating: 5.0, 
+        reviewCount: 2 
+      },
+      { 
+        title: "Black-Tie Designer Tuxedo Set", 
+        category: "Fashion", 
+        pricePerDay: 25, 
+        location: "DHA Phase 6", 
+        imageUrl: "https://images.unsplash.com/photo-1594938298603-c8148c4dae35?w=600", 
+        description: "Italian wool tailored tuxedo with silk lapels, cufflinks, and adjustable bow tie.", 
+        avgRating: 4.6, 
+        reviewCount: 1 
+      },
+      { 
+        title: "Traditional Handcrafted Bridal Lehenga", 
+        category: "Fashion", 
+        pricePerDay: 60, 
+        location: "Tariq Road", 
+        imageUrl: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600", 
+        description: "Intricately hand-embroidered velvet attire complete with matching organza dupatta.", 
+        avgRating: 5.0, 
+        reviewCount: 3 
+      },
+      { 
+        title: "4-Person Mountain Camping Kit", 
+        category: "Sports", 
+        pricePerDay: 18, 
+        location: "North Suburbs", 
+        imageUrl: "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600", 
+        description: "Weatherproof 4-season tent, 2 sub-zero sleeping bags, camping stove, and lanterns.", 
+        avgRating: 4.7, 
+        reviewCount: 2 
+      },
+      { 
+        title: "Inflatable Stand-Up Paddleboard", 
+        category: "Sports", 
+        pricePerDay: 22, 
+        location: "Marina Point", 
+        imageUrl: "https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=600", 
+        description: "Complete touring SUP board set with dual-action hand pump, carbon paddle, and safety leash.", 
+        avgRating: 4.9, 
+        reviewCount: 1 
+      }
     ]);
 
-    // Add initial reviews
+    // Initial reviews
     await Review.create({
       listingId: createdListings[0]._id,
       reviewerName: "Zainab Malik",
       rating: 5,
-      comment: "Incredible view and spotless cleanliness. Host was very communicative!"
+      comment: "Incredible view, quiet, and spotless cleanliness. Host was super responsive!"
     });
 
-    res.send("Database re-seeded with listings and sample reviews!");
+    res.send("Database re-seeded with all 12 marketplace listings and reviews!");
   } catch (err) {
     res.status(500).json({ error: err.message });
   }

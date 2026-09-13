@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const API_URL = process.env.REACT_APP_API_URL || "http://localhost:5000";
-fetch(`${API_URL}/api/seed`);
+const API_URL = process.env.NODE_ENV === 'production'
+  ? 'https://rental-marketplace-api.vercel.app/api' // Your Vercel backend link
+  : 'http://localhost:5000/api';
 
 export default function App() {
   const [activeTab, setActiveTab] = useState('listings'); // 'listings' | 'bookings' | 'analytics'
